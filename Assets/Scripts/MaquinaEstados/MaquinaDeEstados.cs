@@ -1,16 +1,21 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class MaquinaDeEstados : MonoBehaviour {
 
+
     // Estados disponibles
-    public Estado EstadoPatrulla;
-    public Estado EstadoAlerta;
-    public Estado EstadoPersecucion;
+    public Estado EstadoMoverse;
+    public Estado EstadoAtacar;
+    public Estado EstadoRecibirDaño;
+    public Estado Esperar;
+    public Estado Jugar;
+    public Estado Muerto;
     public Estado EstadoInicial;
 
     // Renderer para indicar visualmente el estado actual
-    public MeshRenderer MeshRendererIndicador;
+    public Light MeshRendererIndicador;
 
     private Estado estadoActual; // Estado actual en la máquina de estados
 
@@ -18,7 +23,7 @@ public class MaquinaDeEstados : MonoBehaviour {
         ActivarEstado(EstadoInicial); // Al inicio, activa el estado inicial
 	}
 
-    // Método para activar un nuevo estado
+      // Método para activar un nuevo estado
     public void ActivarEstado(Estado nuevoEstado)
     {
         // Desactiva el estado actual si existe uno
@@ -30,6 +35,6 @@ public class MaquinaDeEstados : MonoBehaviour {
         estadoActual.enabled = true; // Activa el nuevo estado
 
         // Cambia el color del indicador visual al color asociado al estado actual
-        MeshRendererIndicador.material.color = estadoActual.ColorEstado;
+        MeshRendererIndicador.color = estadoActual.ColorEstado;
     }
 }

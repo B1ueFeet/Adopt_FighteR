@@ -1,12 +1,18 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
-    #region member fields
+    #region Datos
+
+    [SerializeField] private Button atackButton;
     public bool Moving { get; private set; } = false;
+    public bool isMoving { get;  set; } = false;
 
     public CharacterMoveData movedata;
+    public CharacterMoveData waitdata;
+    public CharacterMoveData moverdata;
     public Tile characterTile;
     [SerializeField]
     LayerMask GroundLayerMask;
@@ -17,9 +23,7 @@ public class Character : MonoBehaviour
         FindTileAtStart();
     }
 
-    /// <summary>
-    /// If no starting tile has been manually assigned, we find one beneath us
-    /// </summary>
+
     void FindTileAtStart()
     {
         if (characterTile != null)
@@ -54,12 +58,18 @@ public class Character : MonoBehaviour
             animationtime += Time.deltaTime;
 
             if (Vector3.Distance(transform.position, nextTilePosition) > minimumistanceFromNextTile)
+            {
                 continue;
+            }
+                
 
             currentTile = path.tilesInPath[step];
             step++;
             animationtime = 0f;
+            
         }
+
+        isMoving = true;
 
         FinalizePosition(path.tilesInPath[pathlength - 1]);
     }
@@ -84,6 +94,30 @@ public class Character : MonoBehaviour
     {
         transform.position = Vector3.Lerp(origin, destination, duration);
         transform.rotation = Quaternion.LookRotation(origin.DirectionTo(destination).Flat(), Vector3.up);
+    }
+
+    public void changeMovedata()
+    {
+        movedata = moverdata;
+    }
+    public void ChangeWaitData()
+    {
+        movedata = waitdata;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.tag == "Player")
+        {
+            atackButton.gameObject.SetActive(true);
+            Debug.Log("ENTRO EN COLISION0");
+        }
+        else
+        {
+
+        }
+
     }
 
 }

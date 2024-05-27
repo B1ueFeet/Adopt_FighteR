@@ -11,7 +11,7 @@ public class Interact : MonoBehaviour
     LayerMask interactMask;
 
     Camera mainCam;
-    Tile currentTile;
+    public Tile currentTile;
     Character selectedCharacter;
     Pathfinder pathfinder;
     #endregion
@@ -39,15 +39,18 @@ public class Interact : MonoBehaviour
         InspectTile();
     }
 
-    private void InspectTile()
+    public void InspectTile()
     {
         if (currentTile.Occupied)
+        {
             InspectCharacter();
+        }
+
         else
             NavigateToTile();
     }
 
-    private void InspectCharacter()
+    public void InspectCharacter()
     {
         if (currentTile.occupyingCharacter.Moving)
             return;
@@ -67,7 +70,7 @@ public class Interact : MonoBehaviour
         currentTile = null;
     }
 
-    private void SelectCharacter()
+    public  void SelectCharacter()
     {
         selectedCharacter = currentTile.occupyingCharacter;
         pathfinder.FindPaths(selectedCharacter);
@@ -90,6 +93,7 @@ public class Interact : MonoBehaviour
             selectedCharacter.Move(currentPath);
             pathfinder.ResetPathfinder();
             selectedCharacter = null;
+
         }
     }
 }

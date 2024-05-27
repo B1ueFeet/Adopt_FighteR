@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum TileColor { Green, Highlighted };
+public enum TileColor { Green, Highlighted ,Red};
 
 public class Tile : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class Tile : MonoBehaviour
     public float cost;
 
     [SerializeField]
-    GameObject GreenChild, WhiteChild;
+    GameObject GreenChild, WhiteChild ,RedChild;
 
     [SerializeField]
     bool debug;
@@ -37,6 +37,9 @@ public class Tile : MonoBehaviour
                 DebugWithArrow();
                 break;
             case TileColor.Highlighted:
+                WhiteChild.SetActive(true);
+                break;
+            case TileColor.Red:
                 WhiteChild.SetActive(true);
                 break;
             default:
