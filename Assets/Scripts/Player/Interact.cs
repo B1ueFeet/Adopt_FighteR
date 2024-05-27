@@ -32,7 +32,7 @@ public class Interact : MonoBehaviour
 
     private void MouseUpdate()
     {
-        if (!Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 200f, interactMask))
+        if (!Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 300f, interactMask))
             return;
 
         currentTile = hit.transform.GetComponent<Tile>();
