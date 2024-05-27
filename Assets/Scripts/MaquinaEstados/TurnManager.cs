@@ -27,7 +27,7 @@ public class TurnManager : MonoBehaviour
         maquinaDeEstados.ActivarEstado(maquinaDeEstados.Esperar);
         players[currentPlayerIndex].GetComponent<SphereCollider>().enabled = false;
         // Move to next player
-        currentPlayerIndex = (currentPlayerIndex + 1) % players.Length;
+        currentPlayerIndex = (currentPlayerIndex + 1) < players.Length ? (currentPlayerIndex + 1) : 0;
 
         // Start next turn
         StartTurn();
@@ -55,6 +55,6 @@ public class TurnManager : MonoBehaviour
         // Convertir la lista de vuelta a un arreglo
         players = playersList.ToArray();
 
-        EndTurn();
+       
     }
 }

@@ -16,7 +16,7 @@ public class HealthSystem : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
         {
             currentHealth = 0;
             gameObject.GetComponent<MaquinaDeEstados>().ActivarEstado(gameObject.GetComponent<MaquinaDeEstados>().Muerto);
