@@ -8,6 +8,7 @@ public class EstadoMoverse : Estado
     private Character character;
     private int contadorMoves =0;
     [SerializeField] private Button button;
+    private SphereCollider sphereCollider;
 
 
     protected override void Awake()
@@ -16,6 +17,7 @@ public class EstadoMoverse : Estado
         //LOGICA AL INICIAR PRIMERA VEZ
         character = GetComponent<Character>();
         character.changeMovedata();
+        sphereCollider = GetComponent<SphereCollider>();
     }
 
     void Update()
@@ -37,7 +39,7 @@ public class EstadoMoverse : Estado
     // Método llamado cuando el estado se activa.
     void OnEnable()
     {
-
+        sphereCollider.enabled = true;
         character.changeMovedata();
         contadorMoves++;
         //COSAS QUE HACER CCUANDO SE ACTIVE EL ESTADO

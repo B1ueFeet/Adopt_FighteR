@@ -1,4 +1,5 @@
-    using System.Collections;
+using System;
+using System.Collections;
     using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ public class TurnManager : MonoBehaviour
     {
         // PASA A ESTADO DE ESPERA
         maquinaDeEstados.ActivarEstado(maquinaDeEstados.Esperar);
-
+        players[currentPlayerIndex].GetComponent<SphereCollider>().enabled = false;
         // Move to next player
         currentPlayerIndex = (currentPlayerIndex + 1) % players.Length;
 
@@ -41,5 +42,19 @@ public class TurnManager : MonoBehaviour
     {
         // PASA A ESTADO DE Moverse
         maquinaDeEstados.ActivarEstado(maquinaDeEstados.EstadoAtacar);
+    }
+
+    public void Murio(GameObject current)
+    {
+        Debug.Log("ENTRA EN LA MUERTE DE:" + (currentPlayerIndex-1));
+        List<GameObject> playersList = new List<GameObject>(players);
+
+        // Eliminar el GameObject deseado de la lista
+        playersList.Remove(current);
+
+        // Convertir la lista de vuelta a un arreglo
+        players = playersList.ToArray();
+
+        EndTurn();
     }
 }

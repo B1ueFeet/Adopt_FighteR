@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 220303031210332880}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12287548, y: -0, z: -0, w: 0.9924221}
-  m_LocalPosition: {x: 0, y: 0.34, z: -0.48}
+  m_LocalRotation: {x: 0.33996922, y: 0, z: 0, w: 0.9404366}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 220303032207745228}
-  m_LocalEulerAnglesHint: {x: 14.116, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 39.75, y: 0, z: 0}
 --- !u!108 &220303031210332883
 Light:
   m_ObjectHideFlags: 0
@@ -45,8 +45,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 40
-  m_Range: 15
+  m_Intensity: 50
+  m_Range: 7.01
   m_SpotAngle: 60
   m_InnerSpotAngle: 40
   m_CookieSize: 10
@@ -135,8 +135,10 @@ GameObject:
   - component: {fileID: 3849630415907087994}
   - component: {fileID: 5156800403701832592}
   - component: {fileID: 7289499665338387755}
+  - component: {fileID: 9002832919069711285}
   - component: {fileID: 8649916279499448686}
   - component: {fileID: 5435812393941859879}
+  - component: {fileID: 2390433876128310081}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -177,7 +179,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -215,6 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atackButton: {fileID: 0}
+  cercano: {fileID: 0}
   movedata: {fileID: 11400000, guid: dd6f1c9025f1ba945b2082ff9cda2f56, type: 2}
   waitdata: {fileID: 11400000, guid: 7006c657fec208e4888a408d4d25310c, type: 2}
   moverdata: {fileID: 11400000, guid: dd6f1c9025f1ba945b2082ff9cda2f56, type: 2}
@@ -239,9 +242,10 @@ MonoBehaviour:
   "EstadoRecibirDa\xF1o": {fileID: 7856348719810996189}
   Esperar: {fileID: 7856348719810996189}
   Jugar: {fileID: 7289499665338387755}
-  Muerto: {fileID: 7856348719810996189}
+  Muerto: {fileID: 9002832919069711285}
   EstadoInicial: {fileID: 7856348719810996189}
   MeshRendererIndicador: {fileID: 220303031210332883}
+  estadoActual: {fileID: 0}
 --- !u!114 &7856348719810996189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a20d7da2c6485894f985c6a692554589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ColorEstado: {r: 0, g: 0, b: 0, a: 0}
+  ColorEstado: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &3849630415907087994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ColorEstado: {r: 1, g: 0.21568628, b: 0, a: 1}
+  atackButton: {fileID: 0}
 --- !u!114 &5156800403701832592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +301,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ColorEstado: {r: 1, g: 0.65882355, b: 0, a: 1}
   button: {fileID: 0}
+--- !u!114 &9002832919069711285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220303031585184930}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7643f4209f66d2747b9197506d07d60e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ColorEstado: {r: 0, g: 0, b: 0, a: 0}
+  image: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 309bfd99926634148a37cd93e27e2bcd, type: 3}
 --- !u!135 &8649916279499448686
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -313,7 +333,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 2.3
   m_Center: {x: 0, y: 0, z: 0}
@@ -344,6 +364,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &2390433876128310081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220303031585184930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc5cc44ee873fe4884818b626108ba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  health: {fileID: 0}
 --- !u!1 &220303032207745227
 GameObject:
   m_ObjectHideFlags: 0

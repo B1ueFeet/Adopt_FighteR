@@ -7,6 +7,7 @@ public class Character : MonoBehaviour
     #region Datos
 
     [SerializeField] private Button atackButton;
+    public GameObject cercano;
     public bool Moving { get; private set; } = false;
     public bool isMoving { get;  set; } = false;
 
@@ -115,6 +116,7 @@ public class Character : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            cercano = other.gameObject;
             atackButton.gameObject.SetActive(true);
             Debug.Log("ENTRO EN COLISION0");
         }

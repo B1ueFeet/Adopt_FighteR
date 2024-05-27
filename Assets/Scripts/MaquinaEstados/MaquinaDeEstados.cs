@@ -17,7 +17,7 @@ public class MaquinaDeEstados : MonoBehaviour {
     // Renderer para indicar visualmente el estado actual
     public Light MeshRendererIndicador;
 
-    private Estado estadoActual; // Estado actual en la máquina de estados
+    public  Estado estadoActual; // Estado actual en la máquina de estados
 
     void Start () {
         ActivarEstado(EstadoInicial); // Al inicio, activa el estado inicial
