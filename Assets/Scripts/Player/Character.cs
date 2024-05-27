@@ -105,19 +105,20 @@ public class Character : MonoBehaviour
         movedata = waitdata;
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
+        if (atackButton == null)
+        {
+            Debug.LogError("attackButton no está asignado.");
+            return; // Salir temprano si attackButton es null
+        }
 
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             atackButton.gameObject.SetActive(true);
             Debug.Log("ENTRO EN COLISION0");
         }
-        else
-        {
-
-        }
-
     }
-
 }
+
+
